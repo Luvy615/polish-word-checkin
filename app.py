@@ -12,7 +12,7 @@ st.set_page_config(
 
 # 自定义CSS样式 - 简约线条风格
 st.markdown("""
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;700&display=swap">
 <style>
     * {
         font-family: "Noto Serif SC", "宋体", SimSun, STSong, serif !important;
@@ -54,19 +54,25 @@ st.markdown("""
         font-size: 16px;
         font-family: "Noto Serif SC", "宋体", SimSun, STSong, serif !important;
     }
-    h1, h2, h3 {
-        font-family: "Noto Serif SC", "宋体", SimSun, STSong, serif !important;
-        color: #2C3E50;
-    }
     h1 {
+        font-family: "Noto Serif SC", "宋体", SimSun, STSong, serif !important;
+        color: #2C3E50 !important;
         text-align: center;
-        font-size: 15px;
-        font-weight: 300;
+        font-size: 16px !important;
+        font-weight: 300 !important;
     }
     h2 {
-        color: #3498DB;
+        font-family: "Noto Serif SC", "宋体", SimSun, STSong, serif !important;
+        color: #3498DB !important;
         border-bottom: 2px solid #3498DB;
         padding-bottom: 5px;
+        font-size: 14px !important;
+        font-weight: 400 !important;
+    }
+    h3 {
+        font-family: "Noto Serif SC", "宋体", SimSun, STSong, serif !important;
+        font-size: 13px !important;
+        font-weight: 400 !important;
     }
     .stTextInput>div>div>input {
         font-family: "Noto Serif SC", "宋体", SimSun, STSong, serif !important;
