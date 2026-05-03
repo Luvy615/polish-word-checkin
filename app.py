@@ -106,6 +106,14 @@ if not SUPABASE_URL or not SUPABASE_KEY:
 
 supabase = init_supabase()
 
+# 删除单词
+def delete_word(word_id):
+    supabase.table('words').delete().eq('id', word_id).execute()
+
+# 删除打卡历史
+def delete_history_word(word_id):
+    supabase.table('checkin_history').delete().eq('id', word_id).execute()
+
 # 获取今天日期
 today = datetime.now().strftime("%Y-%m-%d")
 
@@ -142,19 +150,25 @@ st.header(f"今日打卡 ({today})")
 
 try:
     today_words_response = supabase.table('words').select('*').eq('date', today).execute()
-    today_words = [{'polish': w['polish'], 'chinese': w['chinese']} for w in today_words_response.data]
+    today_words = [{'id': w['id'], 'polish': w['polish'], 'chinese': w['chinese']} for w in today_words_response.data]
 except Exception as e:
     st.error(f"加载今日单词失败：{str(e)}")
     today_words = []
 
 if today_words:
     for word in today_words:
-        st.markdown(f"""
-        <div class="word-item">
-            <span class="polish-word">{word['polish']}</span>
-            <span class="chinese-meaning">{word['chinese']}</span>
-        </div>
-        """, unsafe_allow_html=True)
+        col1, col2 = st.columns([10, 1])
+        with col1:
+            st.markdown(f"""
+            <div class="word-item">
+                <span class="polish-word">{word['polish']}</span>
+                <span class="chinese-meaning">{word['chinese']}</span>
+            </div>
+            """, unsafe_allow_html=True)
+        with col2:
+            if st.button("🗑️", key=f"del_today_{word['id']}", help="删除此单词"):
+                delete_word(word['id'])
+                st.rerun()
     
     if st.button("完成今日打卡", key="checkin_btn"):
         try:
@@ -184,7 +198,7 @@ try:
         date = item['date']
         if date not in history:
             history[date] = []
-        history[date].append({'polish': item['polish'], 'chinese': item['chinese']})
+        history[date].append({'id': item['id'], 'polish': item['polish'], 'chinese': item['chinese']})
 except Exception as e:
     st.error(f"加载历史记录失败：{str(e)}")
     history = {}
@@ -194,11 +208,17 @@ if history:
         words_list = history[date]
         with st.expander(f"📅 {date} ({len(words_list)}个单词)"):
             for word in words_list:
-                st.markdown(f"""
-                <div class="word-item">
-                    <span class="polish-word">{word['polish']}</span>
-                    <span class="chinese-meaning">{word['chinese']}</span>
-                </div>
-                """, unsafe_allow_html=True)
+                col1, col2 = st.columns([10, 1])
+                with col1:
+                    st.markdown(f"""
+                    <div class="word-item">
+                        <span class="polish-word">{word['polish']}</span>
+                        <span class="chinese-meaning">{word['chinese']}</span>
+                    </div>
+                    """, unsafe_allow_html=True)
+                with col2:
+                    if st.button("🗑️", key=f"del_history_{word['id']}", help="删除此单词"):
+                        delete_history_word(word['id'])
+                        st.rerun()
 else:
     st.info("还没有打卡记录")
