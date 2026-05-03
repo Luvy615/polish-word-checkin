@@ -60,6 +60,8 @@ st.markdown("""
     }
     h1 {
         text-align: center;
+        font-size: 24px;
+        font-weight: 400;
     }
     h2 {
         color: #3498DB;
