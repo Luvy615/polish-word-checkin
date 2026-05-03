@@ -13,13 +13,16 @@ st.set_page_config(
 # 自定义CSS样式 - 简约线条风格
 st.markdown("""
 <style>
+    * {
+        font-family: "宋体", SimSun, STSong, serif !important;
+    }
     .main {
-        font-family: "宋体", SimSun, serif;
+        font-family: "宋体", SimSun, STSong, serif;
     }
     .stButton>button {
         background-color: #FFFFFF;
         color: #3498DB;
-        font-family: "宋体", SimSun, serif;
+        font-family: "宋体", SimSun, STSong, serif !important;
         font-weight: bold;
         border-radius: 3px;
         border: 2px solid #3498DB;
@@ -42,14 +45,19 @@ st.markdown("""
         font-weight: bold;
         color: #2C3E50;
         font-size: 18px;
+        font-family: "宋体", SimSun, STSong, serif !important;
     }
     .chinese-meaning {
         color: #7F8C8D;
         margin-left: 15px;
         font-size: 16px;
+        font-family: "宋体", SimSun, STSong, serif !important;
+    }
+    h1, h2, h3 {
+        font-family: "宋体", SimSun, STSong, serif !important;
+        color: #2C3E50;
     }
     h1 {
-        color: #2C3E50;
         text-align: center;
     }
     h2 {
@@ -58,20 +66,13 @@ st.markdown("""
         padding-bottom: 5px;
     }
     .stTextInput>div>div>input {
-        font-family: "宋体", SimSun, serif;
+        font-family: "宋体", SimSun, STSong, serif !important;
         border: 2px solid #3498DB;
         border-radius: 3px;
     }
     .stTextInput>div>div>input:focus {
         border-color: #2980B9;
         box-shadow: 0 0 0 1px #2980B9;
-    }
-    .add-word-section, .today-section, .history-section {
-        padding: 20px;
-        background: #FFFFFF;
-        border-radius: 3px;
-        border: 1px solid #E9ECEF;
-        margin-bottom: 20px;
     }
 </style>
 """, unsafe_allow_html=True)
