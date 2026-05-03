@@ -12,17 +12,18 @@ st.set_page_config(
 
 # 自定义CSS样式 - 简约线条风格
 st.markdown("""
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap">
 <style>
     * {
-        font-family: "宋体", SimSun, STSong, serif !important;
+        font-family: "Noto Serif SC", "宋体", SimSun, STSong, serif !important;
     }
     .main {
-        font-family: "宋体", SimSun, STSong, serif;
+        font-family: "Noto Serif SC", "宋体", SimSun, STSong, serif;
     }
     .stButton>button {
         background-color: #FFFFFF;
         color: #3498DB;
-        font-family: "宋体", SimSun, STSong, serif !important;
+        font-family: "Noto Serif SC", "宋体", SimSun, STSong, serif !important;
         font-weight: bold;
         border-radius: 3px;
         border: 2px solid #3498DB;
@@ -45,16 +46,16 @@ st.markdown("""
         font-weight: bold;
         color: #2C3E50;
         font-size: 18px;
-        font-family: "宋体", SimSun, STSong, serif !important;
+        font-family: "Noto Serif SC", "宋体", SimSun, STSong, serif !important;
     }
     .chinese-meaning {
         color: #7F8C8D;
         margin-left: 15px;
         font-size: 16px;
-        font-family: "宋体", SimSun, STSong, serif !important;
+        font-family: "Noto Serif SC", "宋体", SimSun, STSong, serif !important;
     }
     h1, h2, h3 {
-        font-family: "宋体", SimSun, STSong, serif !important;
+        font-family: "Noto Serif SC", "宋体", SimSun, STSong, serif !important;
         color: #2C3E50;
     }
     h1 {
@@ -66,7 +67,7 @@ st.markdown("""
         padding-bottom: 5px;
     }
     .stTextInput>div>div>input {
-        font-family: "宋体", SimSun, STSong, serif !important;
+        font-family: "Noto Serif SC", "宋体", SimSun, STSong, serif !important;
         border: 2px solid #3498DB;
         border-radius: 3px;
     }
