@@ -17,8 +17,23 @@ st.markdown("""
     * {
         font-family: "Noto Serif SC", "宋体", SimSun, STSong, serif !important;
     }
-    .main {
-        font-family: "Noto Serif SC", "宋体", SimSun, STSong, serif;
+    .main-title {
+        font-family: "Noto Serif SC", "宋体", SimSun, STSong, serif !important;
+        color: #2C3E50;
+        text-align: center;
+        font-size: 18px;
+        font-weight: 300;
+        margin-bottom: 30px;
+    }
+    .section-title {
+        font-family: "Noto Serif SC", "宋体", SimSun, STSong, serif !important;
+        color: #3498DB;
+        border-bottom: 2px solid #3498DB;
+        padding-bottom: 5px;
+        font-size: 14px;
+        font-weight: 400;
+        margin-top: 20px;
+        margin-bottom: 15px;
     }
     .stButton>button {
         background-color: #FFFFFF;
@@ -53,26 +68,6 @@ st.markdown("""
         margin-left: 15px;
         font-size: 16px;
         font-family: "Noto Serif SC", "宋体", SimSun, STSong, serif !important;
-    }
-    [data-testid="stTitle"] {
-        font-family: "Noto Serif SC", "宋体", SimSun, STSong, serif !important;
-        color: #2C3E50 !important;
-        text-align: center;
-        font-size: 16px !important;
-        font-weight: 300 !important;
-    }
-    [data-testid="stHeader"] {
-        font-family: "Noto Serif SC", "宋体", SimSun, STSong, serif !important;
-        color: #3498DB !important;
-        border-bottom: 2px solid #3498DB;
-        padding-bottom: 5px;
-        font-size: 14px !important;
-        font-weight: 400 !important;
-    }
-    [data-testid="stSubheader"] {
-        font-family: "Noto Serif SC", "宋体", SimSun, STSong, serif !important;
-        font-size: 13px !important;
-        font-weight: 400 !important;
     }
     .stTextInput>div>div>input {
         font-family: "Noto Serif SC", "宋体", SimSun, STSong, serif !important;
@@ -141,10 +136,10 @@ def delete_history_word(word_id):
 today = datetime.now().strftime("%Y-%m-%d")
 
 # 标题
-st.title("波兰语单词打卡")
+st.markdown('<h1 class="main-title">波兰语单词打卡</h1>', unsafe_allow_html=True)
 
 # 添加单词部分
-st.header("添加单词")
+st.markdown('<h2 class="section-title">添加单词</h2>', unsafe_allow_html=True)
 col1, col2, col3 = st.columns([2, 2, 1])
 with col1:
     polish_word = st.text_input("波兰语单词", key="polish_input", placeholder="np. dzień")
@@ -169,7 +164,7 @@ with col3:
             st.warning("请填写完整的单词和释义")
 
 # 今日打卡部分
-st.header(f"今日打卡 ({today})")
+st.markdown(f'<h2 class="section-title">今日打卡 ({today})</h2>', unsafe_allow_html=True)
 
 try:
     today_words_response = supabase.table('words').select('*').eq('date', today).execute()
@@ -209,7 +204,7 @@ else:
     st.info("今天还没有添加单词")
 
 # 打卡历史部分
-st.header("打卡历史")
+st.markdown('<h2 class="section-title">打卡历史</h2>', unsafe_allow_html=True)
 
 try:
     history_response = supabase.table('checkin_history').select('*').execute()
