@@ -3,3 +3,4 @@ __pycache__/
 *$py.class
 *.db
 .env
+.streamlit/secrets.toml
