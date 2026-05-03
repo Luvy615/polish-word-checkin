@@ -60,7 +60,7 @@ st.markdown("""
     }
     h1 {
         text-align: center;
-        font-size: 20px;
+        font-size: 15px;
         font-weight: 300;
     }
     h2 {
