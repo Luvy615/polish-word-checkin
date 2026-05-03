@@ -10,33 +10,33 @@ st.set_page_config(
     layout="centered"
 )
 
-# 自定义CSS样式
+# 自定义CSS样式 - 简约线条风格
 st.markdown("""
 <style>
     .main {
         font-family: "宋体", SimSun, serif;
     }
     .stButton>button {
-        background-color: #3498DB;
-        color: white;
+        background-color: #FFFFFF;
+        color: #3498DB;
         font-family: "宋体", SimSun, serif;
         font-weight: bold;
-        border-radius: 6px;
-        border: none;
+        border-radius: 3px;
+        border: 2px solid #3498DB;
         padding: 10px 24px;
-        transition: all 0.3s;
+        transition: all 0.2s;
     }
     .stButton>button:hover {
-        background-color: #2980B9;
-        transform: translateY(-1px);
+        background-color: #3498DB;
+        color: #FFFFFF;
     }
     .word-item {
         padding: 12px;
         background: #FFFFFF;
         margin: 8px 0;
-        border-radius: 6px;
-        border-left: 4px solid #3498DB;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        border-radius: 3px;
+        border: 1px solid #3498DB;
+        border-left: 3px solid #3498DB;
     }
     .polish-word {
         font-weight: bold;
@@ -54,11 +54,24 @@ st.markdown("""
     }
     h2 {
         color: #3498DB;
+        border-bottom: 2px solid #3498DB;
+        padding-bottom: 5px;
     }
     .stTextInput>div>div>input {
         font-family: "宋体", SimSun, serif;
         border: 2px solid #3498DB;
-        border-radius: 6px;
+        border-radius: 3px;
+    }
+    .stTextInput>div>div>input:focus {
+        border-color: #2980B9;
+        box-shadow: 0 0 0 1px #2980B9;
+    }
+    .add-word-section, .today-section, .history-section {
+        padding: 20px;
+        background: #FFFFFF;
+        border-radius: 3px;
+        border: 1px solid #E9ECEF;
+        margin-bottom: 20px;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -118,10 +131,10 @@ def delete_history_word(word_id):
 today = datetime.now().strftime("%Y-%m-%d")
 
 # 标题
-st.title("🇵🇱 波兰语单词打卡")
+st.title("🐕 波兰语单词打卡 🎀")
 
 # 添加单词部分
-st.header("添加单词")
+st.header("🐕 添加单词 🎀")
 col1, col2, col3 = st.columns([2, 2, 1])
 with col1:
     polish_word = st.text_input("波兰语单词", key="polish_input", placeholder="np. dzień")
@@ -130,7 +143,7 @@ with col2:
 with col3:
     st.write("")
     st.write("")
-    if st.button("添加", key="add_btn"):
+    if st.button("🐕 添加", key="add_btn"):
         if polish_word and chinese_meaning:
             try:
                 supabase.table('words').insert({
@@ -146,7 +159,7 @@ with col3:
             st.warning("请填写完整的单词和释义")
 
 # 今日打卡部分
-st.header(f"今日打卡 ({today})")
+st.header(f"🐕 今日打卡 ({today}) 🎀")
 
 try:
     today_words_response = supabase.table('words').select('*').eq('date', today).execute()
@@ -170,7 +183,7 @@ if today_words:
                 delete_word(word['id'])
                 st.rerun()
     
-    if st.button("完成今日打卡", key="checkin_btn"):
+    if st.button("🎀 完成今日打卡", key="checkin_btn"):
         try:
             for word in today_words:
                 supabase.table('checkin_history').insert({
@@ -186,7 +199,7 @@ else:
     st.info("今天还没有添加单词")
 
 # 打卡历史部分
-st.header("打卡历史")
+st.header("🐕 打卡历史 🎀")
 
 try:
     history_response = supabase.table('checkin_history').select('*').execute()
