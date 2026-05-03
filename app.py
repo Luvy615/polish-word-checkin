@@ -131,10 +131,10 @@ def delete_history_word(word_id):
 today = datetime.now().strftime("%Y-%m-%d")
 
 # 标题
-st.title("🐕 波兰语单词打卡 🎀")
+st.title("波兰语单词打卡")
 
 # 添加单词部分
-st.header("🐕 添加单词 🎀")
+st.header("添加单词")
 col1, col2, col3 = st.columns([2, 2, 1])
 with col1:
     polish_word = st.text_input("波兰语单词", key="polish_input", placeholder="np. dzień")
@@ -143,7 +143,7 @@ with col2:
 with col3:
     st.write("")
     st.write("")
-    if st.button("🐕 添加", key="add_btn"):
+    if st.button("添加", key="add_btn"):
         if polish_word and chinese_meaning:
             try:
                 supabase.table('words').insert({
@@ -159,7 +159,7 @@ with col3:
             st.warning("请填写完整的单词和释义")
 
 # 今日打卡部分
-st.header(f"🐕 今日打卡 ({today}) 🎀")
+st.header(f"今日打卡 ({today})")
 
 try:
     today_words_response = supabase.table('words').select('*').eq('date', today).execute()
@@ -183,7 +183,7 @@ if today_words:
                 delete_word(word['id'])
                 st.rerun()
     
-    if st.button("🎀 完成今日打卡", key="checkin_btn"):
+    if st.button("完成今日打卡", key="checkin_btn"):
         try:
             for word in today_words:
                 supabase.table('checkin_history').insert({
@@ -199,7 +199,7 @@ else:
     st.info("今天还没有添加单词")
 
 # 打卡历史部分
-st.header("🐕 打卡历史 🎀")
+st.header("打卡历史")
 
 try:
     history_response = supabase.table('checkin_history').select('*').execute()
