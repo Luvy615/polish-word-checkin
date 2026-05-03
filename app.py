@@ -54,14 +54,14 @@ st.markdown("""
         font-size: 16px;
         font-family: "Noto Serif SC", "宋体", SimSun, STSong, serif !important;
     }
-    h1 {
+    [data-testid="stTitle"] {
         font-family: "Noto Serif SC", "宋体", SimSun, STSong, serif !important;
         color: #2C3E50 !important;
         text-align: center;
         font-size: 16px !important;
         font-weight: 300 !important;
     }
-    h2 {
+    [data-testid="stHeader"] {
         font-family: "Noto Serif SC", "宋体", SimSun, STSong, serif !important;
         color: #3498DB !important;
         border-bottom: 2px solid #3498DB;
@@ -69,7 +69,7 @@ st.markdown("""
         font-size: 14px !important;
         font-weight: 400 !important;
     }
-    h3 {
+    [data-testid="stSubheader"] {
         font-family: "Noto Serif SC", "宋体", SimSun, STSong, serif !important;
         font-size: 13px !important;
         font-weight: 400 !important;
