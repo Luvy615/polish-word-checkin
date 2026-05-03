@@ -140,8 +140,8 @@ st.markdown("""
 <h1 style="font-family: 'Noto Serif SC', '宋体', SimSun, STSong, serif !important; 
             color: #2C3E50; 
             text-align: center; 
-            font-size: 18px; 
-            font-weight: 300;
+            font-size: 24px; 
+            font-weight: 400;
             margin-bottom: 30px;">
 波兰语单词打卡
 </h1>
